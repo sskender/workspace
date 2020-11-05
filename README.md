@@ -1,19 +1,21 @@
 # WORKSPACE
 
+My workspace config (vim, terminal, zsh etc.)
+
 ## Requirements:
 
-### NeoVim setup
+### Termite
 
-System:
+- termite
+- zsh
+- prompt pure
+
+### NeoVim
 
 - neovim
 - xclip
 - fzf
 
-Node:
-
 - npm install -g neovim
-
-Python:
 
 - pip3 install pynvim
