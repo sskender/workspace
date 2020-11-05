@@ -8,14 +8,12 @@ My workspace config (vim, terminal, zsh etc.)
 
 - termite
 - zsh
-- prompt pure
+  - prompt pure
 
 ### NeoVim
 
 - neovim
+  - npm install -g neovim
+  - pip3 install pynvim
 - xclip
 - fzf
-
-- npm install -g neovim
-
-- pip3 install pynvim
