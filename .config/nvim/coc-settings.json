@@ -1,0 +1,22 @@
+{
+  "coc.preferences.rootPatterns": [
+    ".eslintrc.json",
+    "package.json",
+    "tsconfig.json",
+    ".projectroot",
+    ".vim",
+    ".git"
+  ],
+  "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "markdown",
+    "javascript",
+    "graphql",
+    "html",
+    "vue",
+    "yaml",
+    "json",
+    "python",
+    "vue"
+  ]
+}
