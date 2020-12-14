@@ -311,3 +311,47 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 
 
 
+"
+"
+"
+" PLUGIN SETTINGS
+"
+"
+"
+" Settings mostly from official README:
+" https://github.com/neoclide/coc.nvim
+"
+"
+" COC settings
+"
+"
+" COC extensions
+"
+"
+" Auto install missing extensions
+"
+" Extensions used:
+" * https://github.com/neoclide/coc-snippets
+" * https://github.com/neoclide/coc-tsserver
+" * https://github.com/neoclide/coc-eslint
+" * https://github.com/neoclide/coc-prettier
+" * https://github.com/neoclide/coc-json
+" * https://github.com/neoclide/coc-pairs
+" * https://github.com/neoclide/coc-html
+" * https://github.com/neoclide/coc-css
+" * https://github.com/neoclide/coc-vetur
+"
+let g:coc_global_extensions = [
+    \ 'coc-snippets',
+    \ 'coc-tsserver',
+    \ 'coc-eslint',
+    \ 'coc-prettier',
+    \ 'coc-json',
+    \ 'coc-pairs',
+    \ 'coc-html',
+    \ 'coc-css',
+    \ 'coc-vetur',
+    \ ]
+
+
+
