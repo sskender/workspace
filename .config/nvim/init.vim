@@ -23,7 +23,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
 Plug 'airblade/vim-gitgutter'
 
-" Completion
+" Completion and navigation
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-commentary'
@@ -48,6 +48,7 @@ Plug 'luochen1990/rainbow'
 Plug 'davidhalter/jedi-vim'
 Plug 'tomlion/vim-solidity'
 Plug 'posva/vim-vue'
+Plug 'ap/vim-css-color'
 
 call plug#end()
 
