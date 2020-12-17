@@ -288,6 +288,19 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+" Sane split commands
+noremap <Leader>h :<C-u>split<CR>
+noremap <Leader>v :<C-u>vsplit<CR>
+nnoremap <C-q> :q<CR>
+nnoremap <S-Q> :only<CR>
+
+" Buffers shortcuts
+noremap <leader>c :bd<CR>
+noremap <leader>z :bp<CR>
+noremap <leader>q :bp<CR>
+noremap <leader>x :bn<CR>
+noremap <leader>w :bn<CR>
+
 
 
 
