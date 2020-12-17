@@ -73,6 +73,9 @@ call plug#end()
 " Really, really boring general settings
 "
 "
+" Use Vim settings, rather then Vi settings
+set nocompatible
+
 " Language
 let $LANG='en'
 set langmenu=en
@@ -93,6 +96,7 @@ set encoding=utf8
 
 " The encoding written to file
 set fileencoding=utf-8
+set fileencodings=utf-8
 
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
@@ -137,7 +141,7 @@ endif
 set mouse=a
 
 " Copy paste between vim and everything else
-set clipboard=unnamedplus
+set clipboard=unnamed,unnamedplus
 
 
 
@@ -255,7 +259,7 @@ set si
 "
 "
 "
-" KEY MAPPINGS
+" CUSTOM KEY MAPPINGS
 "
 "
 "
@@ -275,19 +279,6 @@ if has("mac") || has("macunix")
   vmap <D-k> <M-k>
 endif
 
-" Delete trailing white space on save, useful for some filetypes ;)
-fun! CleanExtraSpaces()
-    let save_cursor = getpos(".")
-    let old_query = getreg('/')
-    silent! %s/\s\+$//e
-    call setpos('.', save_cursor)
-    call setreg('/', old_query)
-endfun
-
-if has("autocmd")
-    autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
-endif
-
 " Better window navigation (with Ctrl only)
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
@@ -302,11 +293,40 @@ nnoremap <C-l> <C-w>l
 "
 "
 " JUST WOW
+" Custom things vim can do for some reason
 "
 "
 "
 " Return to last edit position when opening files (You want this!)
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+" Delete trailing white space on save, useful for some filetypes ;)
+fun! CleanExtraSpaces()
+    let save_cursor = getpos(".")
+    let old_query = getreg('/')
+    silent! %s/\s\+$//e
+    call setpos('.', save_cursor)
+    call setreg('/', old_query)
+endfun
+
+if has("autocmd")
+    autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
+endif
+
+" Remove trailing whitespaces
+command! FixWhitespace :%s/\s\+$//e
+
+" Save file as sudo on files that require root permission
+cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
+
+"" Set working directory
+nnoremap <leader>. :lcd %:p:h<CR>
+
+"" Opens an edit command with the path of the currently edited file filled in
+noremap <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
+
+"" Opens a tab edit command with the path of the currently edited file filled
+noremap <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 
 
 
@@ -324,6 +344,8 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 "
 "
 " COC settings
+"
+" neoclide/coc.nvim
 "
 "
 " COC extensions
@@ -591,6 +613,8 @@ command! -nargs=0 Prettier :CocCommand prettier.formatFile
 "
 " vim-fugitive - Git plugin
 "
+" tpope/vim-fugitive
+"
 "
 set statusline^=%{FugitiveStatusline()}
 
@@ -604,28 +628,28 @@ set statusline^=%{FugitiveStatusline()}
 "
 "
 " Add spaces after comment delimiters by default
-let g:NERDSpaceDelims = 1
+"let g:NERDSpaceDelims = 1
 
 " Use compact syntax for prettified multi-line comments
-let g:NERDCompactSexyComs = 1
+"let g:NERDCompactSexyComs = 1
 
 " Align line-wise comment delimiters flush left instead of following code indentation
-let g:NERDDefaultAlign = 'left'
+"let g:NERDDefaultAlign = 'left'
 
 " Set a language to use its alternate delimiters by default
-let g:NERDAltDelims_java = 1
+"let g:NERDAltDelims_java = 1
 
 " Add your own custom formats or override the defaults
-let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+"let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
 
 " Allow commenting and inverting empty lines (useful when commenting a region)
-let g:NERDCommentEmptyLines = 1
+"let g:NERDCommentEmptyLines = 1
 
 " Enable trimming of trailing whitespace when uncommenting
-let g:NERDTrimTrailingWhitespace = 1
+"let g:NERDTrimTrailingWhitespace = 1
 
-" Enable NERDCommenterToggle to check all selected lines is commented or not 
-let g:NERDToggleCheckAllLines = 1
+" Enable NERDCommenterToggle to check all selected lines is commented or not
+"let g:NERDToggleCheckAllLines = 1
 
 
 
@@ -634,6 +658,8 @@ let g:NERDToggleCheckAllLines = 1
 "
 "
 " NERDTree settings
+"
+" preservim/nerdtree
 "
 "
 " Open nerdtree with Ctrl+n
@@ -664,6 +690,8 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
 "
 " Rainbow Parentheses
 "
+" luochen1990/rainbow
+"
 "
 " Set to 0 if you want to enable it later via :RainbowToggle
 let g:rainbow_active = 1
@@ -673,6 +701,8 @@ let g:rainbow_active = 1
 
 
 "
+"
+" Closetag
 "
 " alvan/vim-closetag
 "
@@ -726,6 +756,8 @@ let g:closetag_close_shortcut = '<leader>>'
 "
 " Onedark theme
 "
+" joshdick/onedark.vim
+"
 "
 "hi Comment cterm=italic
 "let g:onedark_hide_endofbuffer=1
@@ -749,6 +781,8 @@ let g:closetag_close_shortcut = '<leader>>'
 "
 " Airline status bar and theme
 "
+" vim-airline/vim-airline
+"
 "
 " Enable tabline
 let g:airline#extensions#tabline#enabled = 1
@@ -768,6 +802,8 @@ let g:airline_theme = 'gruvbox'
 "
 "
 " FZF settings
+"
+" junegunn/fzf
 "
 "
 " This is the default extra key bindings
@@ -845,11 +881,17 @@ command! -bang -nargs=* GGrep
 
 
 
-" Vue.JS posva/vim-vue
-
+"
+"
+" Vue.JS
+"
+" posva/vim-vue
+"
+"
 " Convert vue files to html
 "autocmd BufRead,BufNewFile *.vue setfiletype html
 
 " Fix slow Language servers
 let g:vue_pre_processors = []
 let g:vue_pre_processors = 'detect_on_enter'
+
