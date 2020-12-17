@@ -43,6 +43,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'sheerun/vim-polyglot'
 Plug 'luochen1990/rainbow'
+Plug 'Yggdroot/indentLine'
 
 " Languages support
 Plug 'davidhalter/jedi-vim'
