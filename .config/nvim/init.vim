@@ -29,6 +29,7 @@ Plug 'honza/vim-snippets'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'alvan/vim-closetag'
+Plug 'easymotion/vim-easymotion'
 
 " Files
 Plug 'preservim/nerdtree'
