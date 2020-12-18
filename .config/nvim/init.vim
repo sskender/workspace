@@ -38,19 +38,14 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 " Look and feel
+"Plug 'joshdick/onedark.vim'
 Plug 'morhetz/gruvbox'
-Plug 'joshdick/onedark.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'sheerun/vim-polyglot'
+Plug 'ap/vim-css-color'
 Plug 'luochen1990/rainbow'
 Plug 'Yggdroot/indentLine'
-
-" Languages support
-Plug 'davidhalter/jedi-vim'
-Plug 'tomlion/vim-solidity'
-Plug 'posva/vim-vue'
-Plug 'ap/vim-css-color'
 
 call plug#end()
 
