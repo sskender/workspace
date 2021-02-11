@@ -38,7 +38,6 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 " Look and feel
-"Plug 'joshdick/onedark.vim'
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -189,9 +188,6 @@ set splitright
 
 " Background color
 set background=dark
-
-" Color theme
-colorscheme gruvbox
 
 " Relative line number
 set relativenumber
@@ -767,24 +763,13 @@ let g:closetag_close_shortcut = '<leader>>'
 
 "
 "
-" Onedark theme
+" Gruvbox theme
 "
-" joshdick/onedark.vim
+" morhetz/gruvbox
 "
 "
-"hi Comment cterm=italic
-"let g:onedark_hide_endofbuffer=1
-"let g:onedark_terminal_italics=1
-"let g:onedark_termcolors=256
-
-"syntax on
-"colorscheme onedark
-
-" checks if your terminal has 24-bit color support
-"if (has("termguicolors"))
-"    set termguicolors
-"    hi LineNr ctermbg=NONE guibg=NONE
-"endif
+colorscheme gruvbox
+let g:gruvbox_contrast_dark = 'hard'
 
 
 
@@ -805,7 +790,6 @@ let g:airline#extensions#tabline#right_sep = ''
 let g:airline#extensions#tabline#right_alt_sep = ''
 
 " Switch to your current theme
-"let g:airline_theme = 'onedark'
 let g:airline_theme = 'gruvbox'
 
 
