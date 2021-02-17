@@ -18,11 +18,6 @@ endif
 "
 call plug#begin()
 
-" Git plugins
-Plug 'tpope/vim-fugitive'
-Plug 'junegunn/gv.vim'
-Plug 'airblade/vim-gitgutter'
-
 " Completion and navigation
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'honza/vim-snippets'
@@ -31,11 +26,10 @@ Plug 'tpope/vim-surround'
 Plug 'alvan/vim-closetag'
 Plug 'easymotion/vim-easymotion'
 
-" Files
-Plug 'preservim/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+" Git plugins
+Plug 'tpope/vim-fugitive'
+Plug 'junegunn/gv.vim'
+Plug 'airblade/vim-gitgutter'
 
 " Look and feel
 Plug 'morhetz/gruvbox'
@@ -45,6 +39,12 @@ Plug 'sheerun/vim-polyglot'
 Plug 'ap/vim-css-color'
 Plug 'luochen1990/rainbow'
 Plug 'Yggdroot/indentLine'
+
+" Files
+Plug 'preservim/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
@@ -325,19 +325,9 @@ noremap <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 "
 "
 "
-" Settings mostly from official README:
-" https://github.com/neoclide/coc.nvim
-"
-"
-" COC settings
-"
+" Conquer of Completion
 " neoclide/coc.nvim
 "
-"
-" COC extensions
-"
-"
-" Auto install missing extensions
 "
 " Extensions used:
 " * https://github.com/neoclide/coc-snippets
@@ -349,8 +339,11 @@ noremap <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 " * https://github.com/neoclide/coc-html
 " * https://github.com/neoclide/coc-css
 " * https://github.com/neoclide/coc-vetur
+" * https://github.com/neoclide/coc-docker
+" * https://github.com/neoclide/coc-python
 "
 let g:coc_global_extensions = [
+    \ 'coc-snippets',
     \ 'coc-tsserver',
     \ 'coc-eslint',
     \ 'coc-prettier',
@@ -359,9 +352,9 @@ let g:coc_global_extensions = [
     \ 'coc-html',
     \ 'coc-css',
     \ 'coc-vetur',
+    \ 'coc-docker',
+    \ 'coc-python',
     \ ]
-
-
 
 "
 "
@@ -380,7 +373,7 @@ set cmdheight=2
 
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
-set updatetime=50
+set updatetime=100
 
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
@@ -524,172 +517,11 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 
 
-"
-" COC Snippets
-"
-" Use <C-l> for trigger snippet expand.
-"imap <C-l> <Plug>(coc-snippets-expand)
-
-" Use <C-j> for select text for visual placeholder of snippet.
-"vmap <C-j> <Plug>(coc-snippets-select)
-
-" Use <C-j> for jump to next placeholder, it's default of coc.nvim
-"let g:coc_snippet_next = '<c-j>'
-
-" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
-"let g:coc_snippet_prev = '<c-k>'
-
-" Use <C-j> for both expand and jump (make expand higher priority.)
-"imap <C-j> <Plug>(coc-snippets-expand-jump)
-
-" Use <leader>x for convert visual selected code to snippet
-"xmap <leader>x  <Plug>(coc-convert-snippet)
-
-" Make <tab> used for trigger completion, completion confirm, snippet expand and jump like VSCode
-"inoremap <silent><expr> <TAB>
-"      \ pumvisible() ? coc#_select_confirm() :
-"      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-"      \ <SID>check_back_space() ? "\<TAB>" :
-"      \ coc#refresh()
-
-"function! s:check_back_space() abort
-"  let col = col('.') - 1
-"  return !col || getline('.')[col - 1]  =~# '\s'
-"endfunction
-
-"let g:coc_snippet_next = '<tab>'
-
-
-
-"
-" coc-prettier
-"
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
-
-
-
-
-
-"
-"
-" Signify - Git plugin
-"
-"
-" Signify signs
-"let g:signify_sign_add               = '+'
-"let g:signify_sign_delete            = '_'
-"let g:signify_sign_delete_first_line = '‾'
-"let g:signify_sign_change            = '~'
-
-" I find the numbers disctracting
-"let g:signify_sign_show_count = 0
-"let g:signify_sign_show_text = 1
-
-" Jump though hunks
-"nmap <leader>gj <plug>(signify-next-hunk)
-"nmap <leader>gk <plug>(signify-prev-hunk)
-"nmap <leader>gJ 9999<leader>gJ
-"nmap <leader>gK 9999<leader>gk
-
-
-
-
-
-"
-"
-" vim-fugitive - Git plugin
-"
-" tpope/vim-fugitive
-"
-"
-set statusline^=%{FugitiveStatusline()}
-
-
-
-
-
-"
-"
-" NERDCommenter
-"
-"
-" Add spaces after comment delimiters by default
-"let g:NERDSpaceDelims = 1
-
-" Use compact syntax for prettified multi-line comments
-"let g:NERDCompactSexyComs = 1
-
-" Align line-wise comment delimiters flush left instead of following code indentation
-"let g:NERDDefaultAlign = 'left'
-
-" Set a language to use its alternate delimiters by default
-"let g:NERDAltDelims_java = 1
-
-" Add your own custom formats or override the defaults
-"let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
-
-" Allow commenting and inverting empty lines (useful when commenting a region)
-"let g:NERDCommentEmptyLines = 1
-
-" Enable trimming of trailing whitespace when uncommenting
-"let g:NERDTrimTrailingWhitespace = 1
-
-" Enable NERDCommenterToggle to check all selected lines is commented or not
-"let g:NERDToggleCheckAllLines = 1
-
-
-
-
-
-"
-"
-" NERDTree settings
-"
-" preservim/nerdtree
-"
-"
-" Open nerdtree with Ctrl+n
-map <C-n> :NERDTreeToggle<CR>
-
-" Ignore big useless folders
-let g:NERDTreeIgnore = ['^node_modules$']
-
-" Custom symbols
-let g:NERDTreeGitStatusIndicatorMapCustom = {
-    \ "Modified"  : "✹",
-    \ "Staged"    : "✚",
-    \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "✖",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ "Ignored"   : "☒",
-    \ "Unknown"   : "?"
-    \ }
-
-
-
-
-
-"
-"
-" Rainbow Parentheses
-"
-" luochen1990/rainbow
-"
-"
-" Set to 0 if you want to enable it later via :RainbowToggle
-let g:rainbow_active = 1
-
-
-
 
 
 "
 "
 " Closetag
-"
 " alvan/vim-closetag
 "
 "
@@ -740,8 +572,19 @@ let g:closetag_close_shortcut = '<leader>>'
 
 "
 "
-" Gruvbox theme
+" vim-fugitive - Git wrapper
+" tpope/vim-fugitive
 "
+"
+set statusline^=%{FugitiveStatusline()}
+
+
+
+
+
+"
+"
+" Gruvbox theme
 " morhetz/gruvbox
 "
 "
@@ -755,7 +598,6 @@ let g:gruvbox_contrast_dark = 'hard'
 "
 "
 " Airline status bar and theme
-"
 " vim-airline/vim-airline
 "
 "
@@ -775,8 +617,50 @@ let g:airline_theme = 'gruvbox'
 
 "
 "
-" FZF settings
+" Rainbow Parentheses
+" luochen1990/rainbow
 "
+"
+" Set to 0 if you want to enable it later via :RainbowToggle
+let g:rainbow_active = 1
+
+
+
+
+
+"
+"
+" NERDTree file tree
+" preservim/nerdtree
+"
+"
+" Open nerdtree with Ctrl+n
+map <C-n> :NERDTreeToggle<CR>
+
+" Ignore big useless folders
+let g:NERDTreeIgnore = ['^node_modules$']
+
+" Custom symbols
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ "Ignored"   : "☒",
+    \ "Unknown"   : "?"
+    \ }
+
+
+
+
+
+"
+"
+" FZF settings
 " junegunn/fzf
 "
 "
@@ -857,15 +741,10 @@ command! -bang -nargs=* GGrep
 
 "
 "
-" Vue.JS
-"
+" vim-polyglot - Vue.JS
 " posva/vim-vue
 "
 "
-" Convert vue files to html
-"autocmd BufRead,BufNewFile *.vue setfiletype html
-
 " Fix slow Language servers
 let g:vue_pre_processors = []
-let g:vue_pre_processors = 'detect_on_enter'
-
+" let g:vue_pre_processors = 'detect_on_enter'
