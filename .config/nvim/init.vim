@@ -59,22 +59,18 @@ call plug#end()
 "
 "
 "
-" Config with help from:
-" https://github.com/amix/vimrc/blob/master/vimrcs/basic.vim
-" https://www.chrisatmachine.com/Neovim/02-vim-general-settings
-"
-" NOTE: changed for my style
-"
-"
-" Really, really boring general settings
-"
-"
 " Use Vim settings, rather then Vi settings
 set nocompatible
 
 " Language
 let $LANG='en'
 set langmenu=en
+
+" Faster redrawing
+set ttyfast
+
+" Shell
+set shell=$SHELL
 
 " Sets how many lines of history VIM has to remember
 set history=200
@@ -99,9 +95,6 @@ set ffs=unix,dos,mac
 
 " Support 256 colors
 set t_Co=256
-
-" A buffer becomes hidden when it is abandoned
-set hid
 
 " Required to keep multiple buffers open
 set hidden
@@ -142,13 +135,6 @@ set go=a
 " Copy paste between vim and everything else
 set clipboard=unnamed,unnamedplus
 
-
-
-"
-"
-" Editor view settings
-"
-"
 " Enable syntax highlighting
 syntax enable
 
@@ -195,13 +181,9 @@ set relativenumber
 " Show current line
 set number
 
+" Scroll sooner than later
+set scrolloff=8
 
-
-"
-"
-" Search settings
-"
-"
 " Ignore case when searching
 set ignorecase
 
@@ -214,13 +196,6 @@ set hlsearch
 " Makes search act like search in modern browsers
 set incsearch
 
-
-
-"
-"
-" Tabs
-"
-"
 " Insert 4 spaces for a tab
 set tabstop=4
 
@@ -242,12 +217,6 @@ set autoindent
 " Always show tabs
 set showtabline=2
 
-" Auto indent
-set ai
-
-" Smart indent
-set si
-
 
 
 
@@ -261,6 +230,15 @@ set si
 "
 " Remap VIM 0 to first non-blank character
 map 0 ^
+
+" Double escape to clear search
+nnoremap <esc><esc> :noh<return><esc>
+
+" Disable arrow keys to get used to hjkl
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
 
 " Move a line of text using ALT+[jk] or Command+[jk] on mac
 nmap <M-j> mz:m+<cr>`z
@@ -301,8 +279,7 @@ noremap <leader>w :bn<CR>
 "
 "
 "
-" JUST WOW
-" Custom things vim can do for some reason
+" COMMANDS AND COOL THINGS
 "
 "
 "
@@ -328,13 +305,13 @@ command! FixWhitespace :%s/\s\+$//e
 " Save file as sudo on files that require root permission
 cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 
-"" Set working directory
+" Set working directory
 nnoremap <leader>. :lcd %:p:h<CR>
 
-"" Opens an edit command with the path of the currently edited file filled in
+" Opens an edit command with the path of the currently edited file filled in
 noremap <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 
-"" Opens a tab edit command with the path of the currently edited file filled
+" Opens a tab edit command with the path of the currently edited file filled
 noremap <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 
 
