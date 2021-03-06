@@ -35,6 +35,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'psliwka/vim-smoothie'
 
 " Code design
 Plug 'sheerun/vim-polyglot'
