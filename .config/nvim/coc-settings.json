@@ -11,6 +11,9 @@
     "css",
     "markdown",
     "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
     "graphql",
     "html",
     "vue",
@@ -20,6 +23,7 @@
     "vue"
   ],
   "eslint.autoFixOnSave": true,
+  "prettier.disableSuccessMessage": true,
   "languageserver": {
     "ccls": {
       "command": "ccls",
