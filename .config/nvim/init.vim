@@ -20,6 +20,7 @@ call plug#begin()
 
 " IntelliSense
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'honza/vim-snippets'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 
@@ -346,7 +347,6 @@ noremap <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 " * https://github.com/neoclide/coc-python
 "
 let g:coc_global_extensions = [
-    \ 'coc-snippets',
     \ 'coc-tsserver',
     \ 'coc-eslint',
     \ 'coc-prettier',
