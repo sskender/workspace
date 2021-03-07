@@ -42,6 +42,7 @@ Plug 'psliwka/vim-smoothie'
 Plug 'sheerun/vim-polyglot'
 Plug 'ap/vim-css-color'
 Plug 'luochen1990/rainbow'
+Plug 'rhysd/vim-clang-format'
 Plug 'Yggdroot/indentLine'
 
 " Files
@@ -559,6 +560,19 @@ let g:airline_theme = 'gruvbox'
 "
 " Set to 0 if you want to enable it later via :RainbowToggle
 let g:rainbow_active = 1
+
+
+
+
+
+"
+"
+" Clang format
+" rhysd/vim-clang-format
+"
+"
+" Auto-enabling auto-formatting
+autocmd FileType c,cpp ClangFormatAutoEnable
 
 
 
